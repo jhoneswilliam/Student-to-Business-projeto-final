@@ -1,0 +1,54 @@
+﻿@model IEnumerable<S2B.Models.VENDA>
+
+
+
+<div class="container fix">
+    <h2>
+        Vendas 
+    </h2>
+    <button class="btn btn-default">
+        @Html.ActionLink("Registrar Venda", "Create")
+    </button>
+    <br /><br />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NUM_NF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FUNCIONARIO.NOME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUTO.NOME)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NUM_NF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FUNCIONARIO.NOME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUTO.NOME)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.COD_VENDA }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.COD_VENDA }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.COD_VENDA })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

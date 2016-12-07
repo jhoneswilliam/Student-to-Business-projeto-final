@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="bd_projeto_data-Web.config Connection String" description="bd_projeto_data Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Bd_Projeto.csdl|res://*/Models.Bd_Projeto.ssdl|res://*/Models.Bd_Projeto.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=x79n5naicx.database.windows.net;initial catalog=bd_projeto_S2b;persist security info=True;user id=jhones.william;password=jhoJHO23869;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jhone\\Desktop\\S2B\ -\ ultimate\\S2B\\S2B\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='bd_projeto_data']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="S2B.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FUNCIONARIO">
+    <Key>
+      <PropertyRef Name="COD_FUNCIONARIO" />
+    </Key>
+    <Property Name="COD_FUNCIONARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="LOGIN" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SENHA" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ENDERECO" Type="varchar" MaxLength="100" />
+    <Property Name="TELEFONE" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="CELULAR" Type="varchar" MaxLength="14" />
+    <Property Name="TIPO" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRODUTO">
+    <Key>
+      <PropertyRef Name="COD_PRODUTO" />
+    </Key>
+    <Property Name="COD_PRODUTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="COD_FUNCIONARIO" Type="int" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PRECO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="QUANTIDADE" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VENDA">
+    <Key>
+      <PropertyRef Name="COD_VENDA" />
+    </Key>
+    <Property Name="COD_VENDA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="COD_FUNCIONARIO" Type="int" Nullable="false" />
+    <Property Name="COD_PRODUTO" Type="int" Nullable="false" />
+    <Property Name="NUM_NF" Type="int" Nullable="false" />
+    <Property Name="DATA" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_PRODUTO_REFERENCE_FUNCIONA">
+    <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+    <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FUNCIONARIO">
+        <PropertyRef Name="COD_FUNCIONARIO" />
+      </Principal>
+      <Dependent Role="PRODUTO">
+        <PropertyRef Name="COD_FUNCIONARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VENDA_REFERENCE_FUNCIONA">
+    <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+    <End Role="VENDA" Type="Self.VENDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FUNCIONARIO">
+        <PropertyRef Name="COD_FUNCIONARIO" />
+      </Principal>
+      <Dependent Role="VENDA">
+        <PropertyRef Name="COD_FUNCIONARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VENDA_REFERENCE_PRODUTO">
+    <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="1" />
+    <End Role="VENDA" Type="Self.VENDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUTO">
+        <PropertyRef Name="COD_PRODUTO" />
+      </Principal>
+      <Dependent Role="VENDA">
+        <PropertyRef Name="COD_PRODUTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="S2BModelsStoreContainer">
+    <EntitySet Name="FUNCIONARIO" EntityType="Self.FUNCIONARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUTO" EntityType="Self.PRODUTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VENDA" EntityType="Self.VENDA" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PRODUTO_REFERENCE_FUNCIONA" Association="Self.FK_PRODUTO_REFERENCE_FUNCIONA">
+      <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+      <End Role="PRODUTO" EntitySet="PRODUTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VENDA_REFERENCE_FUNCIONA" Association="Self.FK_VENDA_REFERENCE_FUNCIONA">
+      <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+      <End Role="VENDA" EntitySet="VENDA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VENDA_REFERENCE_PRODUTO" Association="Self.FK_VENDA_REFERENCE_PRODUTO">
+      <End Role="PRODUTO" EntitySet="PRODUTO" />
+      <End Role="VENDA" EntitySet="VENDA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

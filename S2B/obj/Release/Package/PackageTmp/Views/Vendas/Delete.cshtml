@@ -1,0 +1,64 @@
+﻿@model S2B.Models.VENDA
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>VENDA</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NUM_NF)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NUM_NF)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DATA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DATA)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FUNCIONARIO.NOME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FUNCIONARIO.NOME)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PRODUTO.NOME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PRODUTO.NOME)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="S2B.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FUNCIONARIO">
+          <Key>
+            <PropertyRef Name="COD_FUNCIONARIO" />
+          </Key>
+          <Property Name="COD_FUNCIONARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CPF" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="LOGIN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SENHA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ENDERECO" Type="varchar" MaxLength="100" />
+          <Property Name="TELEFONE" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="CELULAR" Type="varchar" MaxLength="14" />
+          <Property Name="TIPO" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUTO">
+          <Key>
+            <PropertyRef Name="COD_PRODUTO" />
+          </Key>
+          <Property Name="COD_PRODUTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_FUNCIONARIO" Type="int" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PRECO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="QUANTIDADE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENDA">
+          <Key>
+            <PropertyRef Name="COD_VENDA" />
+          </Key>
+          <Property Name="COD_VENDA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COD_FUNCIONARIO" Type="int" Nullable="false" />
+          <Property Name="COD_PRODUTO" Type="int" Nullable="false" />
+          <Property Name="NUM_NF" Type="int" Nullable="false" />
+          <Property Name="DATA" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PRODUTO_REFERENCE_FUNCIONA">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="COD_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="PRODUTO">
+              <PropertyRef Name="COD_FUNCIONARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENDA_REFERENCE_FUNCIONA">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="VENDA" Type="Self.VENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="COD_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="VENDA">
+              <PropertyRef Name="COD_FUNCIONARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENDA_REFERENCE_PRODUTO">
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="1" />
+          <End Role="VENDA" Type="Self.VENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="COD_PRODUTO" />
+            </Principal>
+            <Dependent Role="VENDA">
+              <PropertyRef Name="COD_PRODUTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="S2BModelsStoreContainer">
+          <EntitySet Name="FUNCIONARIO" EntityType="Self.FUNCIONARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUTO" EntityType="Self.PRODUTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VENDA" EntityType="Self.VENDA" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PRODUTO_REFERENCE_FUNCIONA" Association="Self.FK_PRODUTO_REFERENCE_FUNCIONA">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENDA_REFERENCE_FUNCIONA" Association="Self.FK_VENDA_REFERENCE_FUNCIONA">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="VENDA" EntitySet="VENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENDA_REFERENCE_PRODUTO" Association="Self.FK_VENDA_REFERENCE_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+            <End Role="VENDA" EntitySet="VENDA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="S2B.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FUNCIONARIO">
+          <Key>
+            <PropertyRef Name="COD_FUNCIONARIO" />
+          </Key>
+          <Property Name="COD_FUNCIONARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPF" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOGIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SENHA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ENDERECO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONE" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CELULAR" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRODUTOes" Relationship="Self.FK_PRODUTO_REFERENCE_FUNCIONA" FromRole="FUNCIONARIO" ToRole="PRODUTO" />
+          <NavigationProperty Name="VENDAs" Relationship="Self.FK_VENDA_REFERENCE_FUNCIONA" FromRole="FUNCIONARIO" ToRole="VENDA" />
+        </EntityType>
+        <EntityType Name="PRODUTO">
+          <Key>
+            <PropertyRef Name="COD_PRODUTO" />
+          </Key>
+          <Property Name="COD_PRODUTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COD_FUNCIONARIO" Type="Int32" Nullable="false" />
+          <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRECO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="QUANTIDADE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FUNCIONARIO" Relationship="Self.FK_PRODUTO_REFERENCE_FUNCIONA" FromRole="PRODUTO" ToRole="FUNCIONARIO" />
+          <NavigationProperty Name="VENDAs" Relationship="Self.FK_VENDA_REFERENCE_PRODUTO" FromRole="PRODUTO" ToRole="VENDA" />
+        </EntityType>
+        <EntityType Name="VENDA">
+          <Key>
+            <PropertyRef Name="COD_VENDA" />
+          </Key>
+          <Property Name="COD_VENDA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COD_FUNCIONARIO" Type="Int32" Nullable="false" />
+          <Property Name="COD_PRODUTO" Type="Int32" Nullable="false" />
+          <Property Name="NUM_NF" Type="Int32" Nullable="false" />
+          <Property Name="DATA" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="FUNCIONARIO" Relationship="Self.FK_VENDA_REFERENCE_FUNCIONA" FromRole="VENDA" ToRole="FUNCIONARIO" />
+          <NavigationProperty Name="PRODUTO" Relationship="Self.FK_VENDA_REFERENCE_PRODUTO" FromRole="VENDA" ToRole="PRODUTO" />
+        </EntityType>
+        <Association Name="FK_PRODUTO_REFERENCE_FUNCIONA">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="COD_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="PRODUTO">
+              <PropertyRef Name="COD_FUNCIONARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENDA_REFERENCE_FUNCIONA">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="VENDA" Type="Self.VENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="COD_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="VENDA">
+              <PropertyRef Name="COD_FUNCIONARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENDA_REFERENCE_PRODUTO">
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="1" />
+          <End Role="VENDA" Type="Self.VENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="COD_PRODUTO" />
+            </Principal>
+            <Dependent Role="VENDA">
+              <PropertyRef Name="COD_PRODUTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bd_projeto_data" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FUNCIONARIOs" EntityType="Self.FUNCIONARIO" />
+          <EntitySet Name="PRODUTOes" EntityType="Self.PRODUTO" />
+          <EntitySet Name="VENDAs" EntityType="Self.VENDA" />
+          <AssociationSet Name="FK_PRODUTO_REFERENCE_FUNCIONA" Association="Self.FK_PRODUTO_REFERENCE_FUNCIONA">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIOs" />
+            <End Role="PRODUTO" EntitySet="PRODUTOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENDA_REFERENCE_FUNCIONA" Association="Self.FK_VENDA_REFERENCE_FUNCIONA">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIOs" />
+            <End Role="VENDA" EntitySet="VENDAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENDA_REFERENCE_PRODUTO" Association="Self.FK_VENDA_REFERENCE_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTOes" />
+            <End Role="VENDA" EntitySet="VENDAs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="S2BModelsStoreContainer" CdmEntityContainer="bd_projeto_data">
+          <EntitySetMapping Name="FUNCIONARIOs">
+            <EntityTypeMapping TypeName="S2B.Models.FUNCIONARIO">
+              <MappingFragment StoreEntitySet="FUNCIONARIO">
+                <ScalarProperty Name="COD_FUNCIONARIO" ColumnName="COD_FUNCIONARIO" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="SENHA" ColumnName="SENHA" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ENDERECO" ColumnName="ENDERECO" />
+                <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUTOes">
+            <EntityTypeMapping TypeName="S2B.Models.PRODUTO">
+              <MappingFragment StoreEntitySet="PRODUTO">
+                <ScalarProperty Name="COD_PRODUTO" ColumnName="COD_PRODUTO" />
+                <ScalarProperty Name="COD_FUNCIONARIO" ColumnName="COD_FUNCIONARIO" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="PRECO" ColumnName="PRECO" />
+                <ScalarProperty Name="QUANTIDADE" ColumnName="QUANTIDADE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENDAs">
+            <EntityTypeMapping TypeName="S2B.Models.VENDA">
+              <MappingFragment StoreEntitySet="VENDA">
+                <ScalarProperty Name="COD_VENDA" ColumnName="COD_VENDA" />
+                <ScalarProperty Name="COD_FUNCIONARIO" ColumnName="COD_FUNCIONARIO" />
+                <ScalarProperty Name="COD_PRODUTO" ColumnName="COD_PRODUTO" />
+                <ScalarProperty Name="NUM_NF" ColumnName="NUM_NF" />
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

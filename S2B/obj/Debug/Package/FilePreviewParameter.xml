@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="jhones" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\jhone\\Desktop\\S2B\ -\ ultimate\\S2B\\S2B\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\jhone\\Desktop\\S2B\ -\ ultimate\\S2B\\S2B\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="bd_projeto_data-Web.config Connection String" description="" value="metadata=res://*/Models.Bd_Projeto.csdl|res://*/Models.Bd_Projeto.ssdl|res://*/Models.Bd_Projeto.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=x79n5naicx.database.windows.net;Initial Catalog=bd_projeto_S2b;Persist Security Info=True;User ID=jhones.william;Password=jhoJHO23869;MultipleActiveResultSets=True;Application Name=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jhone\\Desktop\\S2B\ -\ ultimate\\S2B\\S2B\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='bd_projeto_data']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,49 @@
+﻿@model S2B.Models.PRODUTO
+
+@{
+    ViewBag.title = "Detalhes Produto";
+}
+
+
+        <div class="container fix">
+            <div>
+                <h4>Produto</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.COD_FUNCIONARIO)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.COD_FUNCIONARIO)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NOME)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NOME)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PRECO)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PRECO)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.QUANTIDADE)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.QUANTIDADE)
+                    </dd>
+
+                </dl>
+            </div>
+            <button class="btn btn-default"> @Html.ActionLink("Editar", "Edit", new { id = Model.COD_PRODUTO }) </button>
+            <button class="btn btn-default"> @Html.ActionLink("Lista de Produtos", "Index") </button>                     
+        </div>

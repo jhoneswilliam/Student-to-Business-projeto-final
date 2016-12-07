@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Styles/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body data-spy="scroll" data-target="#topnav">
+
+    <div class="navbar navbar-color navbar-fixed-top" id="topnav">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-reorder"></span>
+
+                </button>
+
+                <a class="navbar-brand" href="#">@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Funcionarios", "Index", "Fucionarios")</li>
+                    <li>@Html.ActionLink("Produtos", "Index", "Produtos")</li>
+                    <li>@Html.ActionLink("Vendas", "Index", "Vendas")</li> 
+                    <li>@Html.ActionLink("Log In", "Login", "Home")</li>
+                    <li>@Html.ActionLink("Sign In", "Sigin", "Home")</li>                    
+                </ul>
+
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </div>
+    
+        @RenderBody()
+
+        <hr />
+   
+    <footer id="footer">
+
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a class="logo" href="index.html">
+                            <img src="images/logo.png" alt="Template Eden">
+                        </a>
+                    </div>
+                    <div class="col-md-5">
+                        <p>&copy; Copyright 2013 by Template Eden. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-5">
+                        <nav id="footer-menu">
+                            <ul>
+                                <li><a href="#">FAQ's</a></li>
+                                <li><a href="#">Sitemap</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+    $(function () {
+        if($(window).width()>960){
+        var tw = $('.triangles').width()/7+32;
+        var ta = tw/2+22;
+        $('.down-triangle').css('border-top',tw+'px solid rgba(0,0,0,0.8)').css('border-left',ta+'px solid transparent').css('border-right',ta+'px solid transparent');
+        $('.up-triangle').css('border-bottom',tw+'px solid rgba(0,0,0,0.8)').css('border-left',ta+'px solid transparent').css('border-right',ta+'px solid transparent');
+        }
+        $('#wd-wrapper').sinusoid({
+            minImgW: 80,
+            maxImgW: 130,
+            minImgAngle: -20,
+            maxImgAngle: 20,
+            leftFactor: 60,
+            sinusoidFunction: {
+                A: 70,
+                T: 1700,
+                P: 0
+            }
+        });
+
+
+        $('a[href*=#]:not([href=#]):not([rel=crs])').click(function() {
+            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+
+    });
+    </script>
+</body>
+</html>

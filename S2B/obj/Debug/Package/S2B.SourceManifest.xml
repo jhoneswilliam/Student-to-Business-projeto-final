@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\jhone\Desktop\S2B - ultimate\S2B\S2B\obj\Debug\Package\PackageTmp" />
+  <setAcl path="C:\Users\jhone\Desktop\S2B - ultimate\S2B\S2B\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\jhone\Desktop\S2B - ultimate\S2B\S2B\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

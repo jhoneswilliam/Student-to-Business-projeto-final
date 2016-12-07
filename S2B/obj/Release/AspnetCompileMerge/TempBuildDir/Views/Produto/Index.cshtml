@@ -1,0 +1,64 @@
+﻿@model IEnumerable<S2B.Models.PRODUTO>
+
+@{
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <section class="slider" id="features">
+        <div class="container">
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.COD_FUNCIONARIO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NOME)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PRECO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QUANTIDADE)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.COD_FUNCIONARIO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NOME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRECO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QUANTIDADE)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.COD_PRODUTO }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.COD_PRODUTO }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.COD_PRODUTO })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </section>
+</body>
+</html>

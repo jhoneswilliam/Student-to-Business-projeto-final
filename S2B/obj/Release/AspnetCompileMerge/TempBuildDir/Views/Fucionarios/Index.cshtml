@@ -1,0 +1,96 @@
+﻿@model IEnumerable<S2B.Models.FUNCIONARIO>
+
+@{
+//Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="jumbotron" id="home">
+        <section class="">
+            <div class="container" style="background-color:#4800ff; font-size:15px;">
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NOME)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CPF)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LOGIN)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SENHA)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EMAIL)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ENDERECO)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TELEFONE)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CELULAR)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TIPO)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NOME)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CPF)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LOGIN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SENHA)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EMAIL)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ENDERECO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TELEFONE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CELULAR)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TIPO)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.COD_FUNCIONARIO }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.COD_FUNCIONARIO }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.COD_FUNCIONARIO })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+﻿@model S2B.Models.VENDA
+@Scripts.Render("~/bundles/angular")
+
+<div ng-app="appVenda">
+    <div class="container fix" ng-controller="addProduto">
+        <div class="row base">
+            <div class="col-md-10">
+                <div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <p>Código</p>
+                                <input name="codigo" type="number" class="form-control" ng-model="produto.cod" ng-enter="infor('click');" min="0" value="{{ codigo }}" /><!---->
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="dropdown">
+                                <div class="form-group">
+                                    <p>Produto</p>
+                                    <input name="produto" type="text" class="form-control" ng-model="produto.nome" ng-enter="produtosList(this);" />
+                                    <!--Drop-->
+                                    <ul class="dropdown-menu dropProduto" style="width:150%; overflow:hidden;">
+                                        <li ng-repeat="prod in ProdutosList" class="lista">
+                                            <a href="" ng-click="inforNome(this)" class="produto {{prod.Cod}}">{{ prod.Nome }} - {{ prod.Preco }} R$ </a>
+                                        </li>
+                                    </ul>
+                                    <!--Drop-->
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <p>Preço</p>
+                                <input name="preco" type="number" readonly="readonly" class="form-control text-right" value="{{ produto.preco }}" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <p>Quantidade</p>
+                                <input name="quantidade" type="number" class="form-control text-center" ng-enter="addItem();" ng-model="produto.quantidade" placeholder=" max : {{ produto.max }}" min="1" max="{{ produto.max }}" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <p>Total</p>
+                                <input name="total" type="number" ng-model="produto.total" class="form-control text-right" readonly="readonly" value="{{ total() }}" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <p>Add</p>
+                                <button class="btn btn-info" ng-click="addItem()">ADD</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                        <div ng-repeat="product in products" class="col-md-6">
+                    <div class="thumbnail">
+                        <img ng-src="{ product.cover }}">
+                        <p class="title">{product.name }}</p>
+                        <p class="price">{ product.price  }}</p>
+                        <p class="date">{ product.pubdate }}</p>
+                        <div class="rating">
+                            <p class="likes" ng-click="plusOne($index)">+ { product.likes }} </p>
+                            <p class="dislikes" ng-click="minusOne($index)">- { product.dislikes }} </p>
+                        </div>
+
+                    -->
+                    <!--AQUI VAI UMAS VENDAS--->
+                    <div class="row">
+                        <div class="table-responsive venda-div">
+                            <table class="table table-hover  table-bordered">
+                                <!--ABAIXO LISTA-->
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-2">Codigo</td>
+                                        <td class="col-md-3">Produto</td>
+                                        <td class="col-md-2">V. Unitario</td>
+                                        <td class="col-md-2">Quantidade</td>
+                                        <td class="col-md-2">V. Total</td>
+                                        <td class="col-md-1">Remover</td>
+                                    </tr>
+                                </tbody>
+                                <tbody ng-repeat="itemproduto in lista">
+                                    <tr class="text-justify prod">
+                                        <td class="col-md-2">{{ itemproduto.codigo }}</td>
+                                        <td class="col-md-3">{{ itemproduto.nome }}</td>
+                                        <td class="col-md-2">{{ itemproduto.valorUnitario }} R$</td>
+                                        <td class="col-md-2">{{ itemproduto.quantidade }} UN</td>
+                                        <td class="col-md-2">{{ itemproduto.total }} R$</td>
+                                        <td class="hidden">{{ itemproduto.id }} R$</td>
+                                        <td class="col-md-1"><button class="btn btn-danger col-md-offset-3" ng-click="delItem(this)">X</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class=""><button class="btn btn-danger" ng-click="LimpaVenda();">Limpar</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="row">
+                    <p>Total da Compra</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input name="total" type="text" class="text-right form-control" readonly="readonly" value="{{ compra.soma() }} R$" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p>Quantidade</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input name="total" type="text" class="text-right form-control" readonly="readonly" value=" {{ compra.quant() }} Items" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class=""><button class="btn btn-info" ng-click="terminaVenda();">Finalizar</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .venda-div {
+        background-color: white;
+        color: black;
+        font-size: 16px;
+    }
+
+    .base {
+        background-color: white;
+        color: black;
+    }
+</style>

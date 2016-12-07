@@ -1,0 +1,62 @@
+﻿@model S2B.Models.PRODUTO
+
+@{
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <section class="slider" id="features">
+        <div class="container">
+            <div>
+                <h4>PRODUTO</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.COD_FUNCIONARIO)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.COD_FUNCIONARIO)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NOME)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NOME)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PRECO)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PRECO)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.QUANTIDADE)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.QUANTIDADE)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.COD_PRODUTO }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </section>
+</body>
+</html>

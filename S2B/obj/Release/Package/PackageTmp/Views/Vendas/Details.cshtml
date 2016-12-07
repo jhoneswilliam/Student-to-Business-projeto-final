@@ -1,0 +1,58 @@
+﻿@model S2B.Models.VENDA
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>VENDA</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NUM_NF)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NUM_NF)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DATA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DATA)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FUNCIONARIO.NOME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FUNCIONARIO.NOME)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PRODUTO.NOME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PRODUTO.NOME)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.COD_VENDA }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

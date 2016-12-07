@@ -1,0 +1,92 @@
+﻿@model S2B.Models.FUNCIONARIO
+
+@{
+    ViewBag.title = "Detalhes Funcionário";
+}
+
+<!DOCTYPE html>
+
+
+            <div class="container fix">
+                <div>
+                    <h4>FUNCIONARIO</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NOME)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.NOME)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CPF)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CPF)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LOGIN)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.LOGIN)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SENHA)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.SENHA)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EMAIL)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.EMAIL)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ENDERECO)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ENDERECO)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.TELEFONE)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TELEFONE)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CELULAR)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CELULAR)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.TIPO)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TIPO)
+                        </dd>
+
+                    </dl>
+                </div>
+                <button class="btn btn-default"> @Html.ActionLink("Editar", "Edit", new { id = Model.COD_FUNCIONARIO })  </button>
+                <button class="btn btn-default"> @Html.ActionLink("Lista de Funcionários", "Index")</button>
+ 
+            </div>
